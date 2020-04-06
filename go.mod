@@ -1,4 +1,4 @@
-module github.com/concourse/registry-image-resource
+module github.com/seeeverything/registry-image-resource
 
 require (
 	github.com/VividCortex/ewma v1.1.1 // indirect
