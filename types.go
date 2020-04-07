@@ -43,6 +43,8 @@ type ContentTrust struct {
 	RepositoryPassphrase string `json:"repository_passphrase"`
 	TLSKey               string `json:"tls_key"`
 	TLSCert              string `json:"tls_cert"`
+	SnapShotKeyID        string `json:"snapshot_key_id"`
+	SnapShotKey          string `json:"snapshot_key"`
 }
 
 /* Create notary config directory with following structure
@@ -50,6 +52,7 @@ type ContentTrust struct {
 └── trust
 	└── private
 		└── <private-key-id>.key
+		└── <snapshot-key-id>.key
 └── tls
 	└── <notary-host>
 		├── client.cert
@@ -89,6 +92,12 @@ func (ct *ContentTrust) PrepareConfigDir() (string, error) {
 
 	repoKey := fmt.Sprintf("%s.key", ct.RepositoryKeyID)
 	err = ioutil.WriteFile(filepath.Join(privateDir, repoKey), []byte(ct.RepositoryKey), 0600)
+	if err != nil {
+		return "", err
+	}
+
+	snapShotKey := fmt.Sprintf("%s.key", ct.SnapShotKeyID)
+	err = ioutil.WriteFile(filepath.Join(privateDir, snapShotKey), []byte(ct.SnapShotKey), 0600)
 	if err != nil {
 		return "", err
 	}
