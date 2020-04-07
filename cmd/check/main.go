@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	resource "github.com/concourse/registry-image-resource"
+	resource "github.com/seeeverything/registry-image-resource"
 	"github.com/google/go-containerregistry/pkg/authn"
 	"github.com/google/go-containerregistry/pkg/logs"
 	"github.com/google/go-containerregistry/pkg/name"
